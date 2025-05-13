@@ -13,9 +13,12 @@ spec:
       labels:
         app: {{ .Values.appLabel }}
     spec:
+      imagePullSecrets:
+      - name: ecr-secret
       containers:
       - name: {{ .Values.appLabel }}
         image: {{ .Values.sqsProcessorDevImage.repository }}
+
         env:
         - name: AWS_ACCESS_KEY_ID
           valueFrom:
