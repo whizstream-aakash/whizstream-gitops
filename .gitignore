@@ -2,5 +2,5 @@
 
 *.mp4
 
-./scripts
+.scripts/
 helm_chart_guide.txt

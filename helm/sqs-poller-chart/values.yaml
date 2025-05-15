@@ -9,6 +9,6 @@ secret:
 #SQS-Processor
 appLabel: sqs-processor-dev
 namespace: default
-replicaCount: 1
+replicaCount: 2
 sqsProcessorDevImage:
   repository: 793130699528.dkr.ecr.us-east-1.amazonaws.com/sqs-processor-dev
