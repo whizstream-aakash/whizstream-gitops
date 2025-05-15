@@ -1,0 +1,14 @@
+serviceAccount:
+  annotations: {}
+  name: "default"
+  
+secret:
+  ecrSecretName: ecr-secret
+  name: aws-credentials
+
+#SQS-Processor
+appLabel: sqs-processor-dev
+namespace: default
+replicaCount: 1
+sqsProcessorDevImage:
+  repository: 793130699528.dkr.ecr.us-east-1.amazonaws.com/sqs-processor-dev

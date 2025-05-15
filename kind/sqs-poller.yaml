@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sqs-dp
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sqs-processor-dev
+  template:
+    metadata:
+      labels:
+        app: sqs-processor-dev
+    spec:
+      imagePullSecrets:
+        - name: ecr-secret
+      containers:
+        - name: sqs-processopr-dev
+          image: 793130699528.dkr.ecr.us-east-1.amazonaws.com/sqs-processor-dev
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-credentials
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: aws-credentials
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: aws-credentials
+                  key: AWS_REGION
+            - name: AWS_SQS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: aws-credentials
+                  key: AWS_SQS_URL

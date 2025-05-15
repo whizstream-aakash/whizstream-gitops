@@ -1,12 +1,10 @@
+# kind-config.yaml
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
-name: whizstream-local
 nodes:
   - role: control-plane
     extraPortMappings:
-      - containerPort: 30080  # HTTP service (Ingress/ArgoCD UI)
-        hostPort: 30080        # Expose on your machine
-      - containerPort: 30443  # HTTPS service (Ingress/ArgoCD UI)
-        hostPort: 30443        # Expose on your machine
+      - containerPort: 30001
+        hostPort: 30001
   - role: worker
   - role: worker
