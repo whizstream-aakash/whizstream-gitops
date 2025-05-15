@@ -1,0 +1,22 @@
+# sqs-processor-app.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sqs-processor
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/whizstream-aakash/whizstream-gitops
+    targetRevision: HEAD
+    path: helm/sqs-processor-chart
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
